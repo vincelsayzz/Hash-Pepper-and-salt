@@ -1,20 +1,64 @@
-# Secure Authentication System
+React + TypeScript + Vite
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-A full-stack, robust registration and login system designed to demonstrate industry-standard user authentication and data protection practices.
+Currently, two official plugins are available:
 
-## 👥 The Team
-* **Vince Keth Maarat:** Systems Analyst & Co-Developer
-* **Joebelle Genota:** Programmer
+@vitejs/plugin-react uses Oxc
+@vitejs/plugin-react-swc uses SWC
+React Compiler
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see this documentation.
 
-## 🔐 Key Features
-* **Advanced Cryptography:** Implements password hashing combined with salt and pepper techniques to defend against brute-force and rainbow table attacks.
-* **Security Feedback:** Features a dynamic, real-time password strength meter to encourage secure credential creation.
-* **Architecture:** Clean separation of concerns between frontend and backend, equipped with proper CORS configurations and API fallback handling.
+Expanding the ESLint configuration
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## 🛠️ Tech Stack
-* **Frontend:** HTML/CSS/JavaScript (Include React/Vite if applicable)
-* **Backend:** Node.js / Express (Adjust if needed)
-* **Deployment:** Vercel
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 🚀 Live Demo
-[Insert your new Vercel link here once deployed]
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+You can also install eslint-plugin-react-x and eslint-plugin-react-dom for React-specific lint rules:
+
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
