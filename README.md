@@ -1,6 +1,6 @@
 # Secure Authentication System
 
-A full-stack, robust registration and login system designed to demonstrate industry-standard user authentication and data protection practices.
+A robust registration and login system designed to demonstrate industry-standard user authentication and data protection practices.
 
 ## 👥 The Team
 * **Vince Keth Maarat:** Systems Analyst & Co-Developer
